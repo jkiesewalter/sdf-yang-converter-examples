@@ -1,0 +1,222 @@
+{
+  "defaultNamespace": "acl",
+  "info": {
+    "copyright": "Copyright (c) 2019 IETF Trust and the persons identified as",
+    "license": "to the license terms contained in, the Simplified BSD",
+    "title": "ietf-access-control-list",
+    "version": "2019-03-04"
+  },
+  "namespace": {
+    "acl": "urn:ietf:params:xml:ns:yang:ietf-access-control-list",
+    "if": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+    "packet-fields": "urn:ietf:params:xml:ns:yang:ietf-packet-fields",
+    "yang": "urn:ietf:params:xml:ns:yang:ietf-yang-types"
+  },
+  "sdfData": {
+    "accept": {
+      "description": "Accept the packet.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/forwarding-action"
+    },
+    "acl-base": {
+      "description": "Base Access Control List type for all Access Control List type\r\nidentifiers.\n!Conversion note: identity!\n"
+    },
+    "acl-counters": {
+      "description": "Common grouping for ACL counters.",
+      "properties": {
+        "matched-octets": {
+          "description": "Count of the number of octets (bytes) matching the current\r\nACL entry.\r\n\r\nAn implementation should provide this counter on a\r\nper-interface, per-ACL-entry basis if possible.\r\n\r\nIf an implementation only supports ACL counters per entry\r\n(i.e., not broken out per interface), then the value\r\nshould be equal to the aggregate count across all interfaces.\r\n\r\nAn implementation that provides counters per entry per\r\ninterface is not required to also provide an aggregate count,\r\ne.g., per entry -- the user is expected to be able to\r\nimplement the required aggregation if such a count is needed.\n!Conversion note: type counter64!\n\n\n",
+          "sdfRef": "yang:/sdfData/counter64"
+        },
+        "matched-packets": {
+          "description": "Count of the number of packets matching the current ACL\r\nentry.\r\n\r\nAn implementation should provide this counter on a\r\nper-interface, per-ACL-entry basis if possible.\r\n\r\nIf an implementation only supports ACL counters on a per-\r\nentry basis (i.e., not broken out per interface), then the\r\nvalue should be equal to the aggregate count across all\r\ninterfaces.\r\n\r\nAn implementation that provides counters on a per-entry, per-\r\ninterface basis is not required to also provide an aggregate\r\ncount, e.g., per entry -- the user is expected to be able to\r\nimplement the required aggregation if such a count is\r\nneeded.\n!Conversion note: type counter64!\n\n\n",
+          "sdfRef": "yang:/sdfData/counter64"
+        }
+      },
+      "type": "object"
+    },
+    "acl-type": {
+      "description": "This type is used to refer to an ACL type.\n!Conversion note: typedef!\n\n!Conversion note: type identityref!\n",
+      "sdfRef": "#/sdfData/acl-base"
+    },
+    "drop": {
+      "description": "Drop packet without sending any ICMP error message.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/forwarding-action"
+    },
+    "eth-acl-type": {
+      "description": "An ACL that matches on fields in the Ethernet header,\r\nlike 10/100/1000baseT or a Wi-Fi Access Control List.  An ACL\r\nof type ethernet does not contain matches on fields in the\r\nIPv4 header, the IPv6 header, or Layer 4 headers.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/acl-base"
+    },
+    "forwarding-action": {
+      "description": "Base identity for actions in the forwarding category.\n!Conversion note: identity!\n"
+    },
+    "ietf-access-control-list-info": {
+      "description": "This YANG module defines a component that describes the\r\nconfiguration and monitoring of Access Control Lists (ACLs).\r\n\r\nThe key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL',\r\n'SHALL NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED',\r\n'NOT RECOMMENDED', 'MAY', and 'OPTIONAL' in this document\r\nare to be interpreted as described in BCP 14 (RFC 2119)\r\n(RFC 8174) when, and only when, they appear in all\r\ncapitals, as shown here.\r\n\r\nCopyright (c) 2019 IETF Trust and the persons identified as\r\nthe document authors.  All rights reserved.\r\n\r\nRedistribution and use in source and binary forms, with or\r\nwithout modification, is permitted pursuant to, and subject\r\nto the license terms contained in, the Simplified BSD\r\nLicense set forth in Section 4.c of the IETF Trust's Legal\r\nProvisions Relating to IETF Documents\r\n(http://trustee.ietf.org/license-info).\r\n\r\nThis version of this YANG module is part of RFC 8519; see\r\nthe RFC itself for full legal notices.\n!Conversion note: revision 2019-03-04!\n\n!Conversion note: organization IETF NETMOD (Network Modeling) Working Group.!\n\n!Conversion note: contact WG Web:  <https://datatracker.ietf.org/wg/netmod/>\r\nWG List: netmod@ietf.org\r\n\r\nEditor: Mahesh Jethanandani\r\n        mjethanandani@gmail.com\r\nEditor: Lisa Huang\r\n        huangyi_99@yahoo.com\r\nEditor: Sonal Agarwal\r\n        sagarwal12@gmail.com\r\nEditor: Dana Blair\r\n        dana@blairhome.com!\n"
+    },
+    "ipv4-acl-type": {
+      "description": "An ACL that matches on fields from the IPv4 header\r\n(e.g., IPv4 destination address) and Layer 4 headers (e.g., TCP\r\ndestination port).  An ACL of type ipv4 does not contain\r\nmatches on fields in the Ethernet header or the IPv6 header.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/acl-base"
+    },
+    "ipv6-acl-type": {
+      "description": "An ACL that matches on fields from the IPv6 header\r\n(e.g., IPv6 destination address) and Layer 4 headers (e.g., TCP\r\ndestination port).  An ACL of type ipv6 does not contain\r\nmatches on fields in the Ethernet header or the IPv4 header.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/acl-base"
+    },
+    "log-action": {
+      "description": "Base identity for defining the destination for logging\r\nactions.\n!Conversion note: identity!\n"
+    },
+    "log-none": {
+      "description": "No logging for the packet.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/log-action"
+    },
+    "log-syslog": {
+      "description": "System log (syslog) the information for the packet.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/log-action"
+    },
+    "mixed-eth-ipv4-acl-type": {
+      "description": "An ACL that contains a mix of entries that match\r\non fields in Ethernet headers and in IPv4 headers.\r\nMatching on Layer 4 header fields may also exist in the\r\nlist.\n!Conversion note: identity!\n",
+      "properties": {
+        "ase_": {
+          "sdfRef": "#/sdfData/ipv4-acl-type"
+        },
+        "base_": {
+          "sdfRef": "#/sdfData/eth-acl-type"
+        }
+      },
+      "type": "object"
+    },
+    "mixed-eth-ipv4-ipv6-acl-type": {
+      "description": "An ACL that contains a mix of entries that\r\nmatch on fields in Ethernet headers, IPv4 headers, and IPv6\r\nheaders.  Matching on Layer 4 header fields may also exist\r\nin the list.\n!Conversion note: identity!\n",
+      "properties": {
+        "ase_": {
+          "sdfRef": "#/sdfData/ipv4-acl-type"
+        },
+        "base_": {
+          "sdfRef": "#/sdfData/eth-acl-type"
+        },
+        "se_": {
+          "sdfRef": "#/sdfData/ipv6-acl-type"
+        }
+      },
+      "type": "object"
+    },
+    "mixed-eth-ipv6-acl-type": {
+      "description": "An ACL that contains a mix of entries that match on fields\r\nin Ethernet headers and in IPv6 headers.  Matching\r\non Layer 4 header fields may also exist in the list.\n!Conversion note: identity!\n",
+      "properties": {
+        "ase_": {
+          "sdfRef": "#/sdfData/ipv6-acl-type"
+        },
+        "base_": {
+          "sdfRef": "#/sdfData/eth-acl-type"
+        }
+      },
+      "type": "object"
+    },
+    "reject": {
+      "description": "Drop the packet and send an ICMP error message to the source.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/forwarding-action"
+    }
+  },
+  "sdfObject": {
+    "acls": {
+      "description": "This is a top-level container for Access Control Lists.\r\nIt can have one or more acl nodes.",
+      "sdfData": {
+        "interface-acl": {
+          "description": "Grouping for per-interface ingress ACL data.",
+          "properties": {
+            "acl-sets": {
+              "description": "Enclosing container for the list of ingress ACLs on the\r\ninterface.",
+              "properties": {
+                "acl-set": {
+                  "description": "List of ingress ACLs on the interface.\n!Conversion note: key name!\n",
+                  "items": {
+                    "description": "List of ingress ACLs on the interface.",
+                    "properties": {},
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "sdfProperty": {
+        "acl": {
+          "description": "An ACL is an ordered list of ACEs.  Each ACE has a\r\nlist of match criteria and a list of actions.\r\nSince there are several kinds of ACLs implemented\r\nwith different attributes for different vendors,\r\nthis model accommodates customizing ACLs for\r\neach kind and for each vendor.\n!Conversion note: key name!\n",
+          "items": {
+            "description": "An ACL is an ordered list of ACEs.  Each ACE has a\r\nlist of match criteria and a list of actions.\r\nSince there are several kinds of ACLs implemented\r\nwith different attributes for different vendors,\r\nthis model accommodates customizing ACLs for\r\neach kind and for each vendor.",
+            "properties": {
+              "aces": {
+                "description": "The aces container contains one or more ACE nodes.",
+                "properties": {
+                  "ace": {
+                    "description": "List of ACEs.\n!Conversion note: key name!\n",
+                    "items": {
+                      "description": "List of ACEs.",
+                      "properties": {},
+                      "type": "object"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "name": {
+                "description": "The name of the access list.  A device MAY further\r\nrestrict the length of this name; space and special\r\ncharacters are not allowed.\n\n",
+                "maxLength": 64.0,
+                "minLength": 1.0,
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of ACL.  Indicates the primary intended\r\ntype of match criteria (e.g., Ethernet, IPv4, IPv6, mixed,\r\netc.) used in the list instance.\n\n",
+                "sdfRef": "#/sdfData/acl-type"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "attachment-points": {
+          "description": "Enclosing container for the list of\r\nattachment points on which ACLs are set.",
+          "properties": {
+            "interface": {
+              "description": "List of interfaces on which ACLs are set.\n!Conversion note: key interface-id!\n",
+              "items": {
+                "description": "List of interfaces on which ACLs are set.",
+                "properties": {
+                  "egress": {
+                    "description": "The ACLs applied to the egress interface.",
+                    "properties": {
+                      "interface-acl": {
+                        "sdfRef": "#/sdfObject/acls/sdfData/interface-acl"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "ingress": {
+                    "description": "The ACLs applied to the ingress interface.",
+                    "properties": {
+                      "interface-acl": {
+                        "sdfRef": "#/sdfObject/acls/sdfData/interface-acl"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "interface-id": {
+                    "description": "Reference to the interface id list key.\n\n",
+                    "sdfRef": "if:/sdfData/interface-ref"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      }
+    }
+  }
+}
+

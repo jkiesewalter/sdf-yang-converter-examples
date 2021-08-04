@@ -1,0 +1,261 @@
+module result {
+  yang-version 1.1;
+
+  import sdf_extension {
+    prefix helper;
+  }
+
+  description
+    "This Resource describes the battery material represented as an enumerated set of strings.";
+
+  revision 2019-02-22;
+
+  container batterymaterial {
+    helper:sdf-spec "sdfObject";
+    description
+      "This Resource describes the battery material represented as an enumerated set of strings.";
+    leaf material {
+      helper:sdf-spec "sdfRequired";
+      type enumeration {
+        enum "Alkaline" {
+          value 0;
+        }
+        enum "Aluminium Air" {
+          value 1;
+        }
+        enum "Aluminium Ion" {
+          value 2;
+        }
+        enum "Atomic Betavoltaics" {
+          value 3;
+        }
+        enum "Atomic Optoelectric Nuclear" {
+          value 4;
+        }
+        enum "Atomic Nuclear" {
+          value 5;
+        }
+        enum "Bunsen Cell" {
+          value 6;
+        }
+        enum "Chromic Acid Cell" {
+          value 7;
+        }
+        enum "Poggendorff Cell" {
+          value 8;
+        }
+        enum "Clark Cell" {
+          value 9;
+        }
+        enum "Daniell Cell" {
+          value 10;
+        }
+        enum "Dry Cell" {
+          value 11;
+        }
+        enum "Earth" {
+          value 12;
+        }
+        enum "Flow" {
+          value 13;
+        }
+        enum "Flow Vanadium Redox" {
+          value 14;
+        }
+        enum "Flow Zinc Bromine" {
+          value 15;
+        }
+        enum "Flow Zinc Cerium" {
+          value 16;
+        }
+        enum "Frog" {
+          value 17;
+        }
+        enum "Fuel" {
+          value 18;
+        }
+        enum "Galvanic Cell" {
+          value 19;
+        }
+        enum "Glass" {
+          value 20;
+        }
+        enum "Grove Cell" {
+          value 21;
+        }
+        enum "Lead Acid" {
+          value 22;
+        }
+        enum "Lead Acid Deep Cycle" {
+          value 23;
+        }
+        enum "Lead Acid VRLA" {
+          value 24;
+        }
+        enum "Lead Acid AGM" {
+          value 25;
+        }
+        enum "Lead Acid Gel" {
+          value 26;
+        }
+        enum "Leclanche Cell" {
+          value 27;
+        }
+        enum "Lemon Potato" {
+          value 28;
+        }
+        enum "Lithium" {
+          value 29;
+        }
+        enum "Lithium Air" {
+          value 30;
+        }
+        enum "Lithium Ion" {
+          value 31;
+        }
+        enum "Lithium Ion Cobalt Oxide (ICR)" {
+          value 32;
+        }
+        enum "Lithium Ion Manganese Oxide (IMR)" {
+          value 33;
+        }
+        enum "Lithium Ion Polymer" {
+          value 34;
+        }
+        enum "Lithium Iron Phosphate" {
+          value 35;
+        }
+        enum "Lithium Sulfur" {
+          value 36;
+        }
+        enum "Lithium Titanate" {
+          value 37;
+        }
+        enum "Lithium Ion Thin Film" {
+          value 38;
+        }
+        enum "Magnesium" {
+          value 39;
+        }
+        enum "Magnesium Ion" {
+          value 40;
+        }
+        enum "Mercury" {
+          value 41;
+        }
+        enum "Molten Salt" {
+          value 42;
+        }
+        enum "Nickel Cadmium" {
+          value 43;
+        }
+        enum "Nickel Cadmium Vented Cell" {
+          value 44;
+        }
+        enum "Nickel Hydrogen" {
+          value 45;
+        }
+        enum "Nickel Iron " {
+          value 46;
+        }
+        enum "Nickel Metal Hydride" {
+          value 47;
+        }
+        enum "Nickel Metal Hydride Low Self-Discharge" {
+          value 48;
+        }
+        enum "Nickel Oxyhydroxide" {
+          value 49;
+        }
+        enum "Nickel Oxyride" {
+          value 50;
+        }
+        enum "Nickel Zinc" {
+          value 51;
+        }
+        enum "Organic Radical" {
+          value 52;
+        }
+        enum "Paper" {
+          value 53;
+        }
+        enum "Polymer Based" {
+          value 54;
+        }
+        enum "Polysulfide Bromide" {
+          value 55;
+        }
+        enum "Potassium Ion" {
+          value 56;
+        }
+        enum "Pulvermachers Chain" {
+          value 57;
+        }
+        enum "Silicon Air" {
+          value 58;
+        }
+        enum "Silver Calcium" {
+          value 59;
+        }
+        enum "Silver Oxide" {
+          value 60;
+        }
+        enum "Silver Zinc" {
+          value 61;
+        }
+        enum "Sodium Ion" {
+          value 62;
+        }
+        enum "Sodium Sulfur" {
+          value 63;
+        }
+        enum "Solid State" {
+          value 64;
+        }
+        enum "Sugar" {
+          value 65;
+        }
+        enum "Super Iron" {
+          value 66;
+        }
+        enum "UltraBattery" {
+          value 67;
+        }
+        enum "Voltaic Pile" {
+          value 68;
+        }
+        enum "Voltaic Pile Penny" {
+          value 69;
+        }
+        enum "Voltaic Pile Trough" {
+          value 70;
+        }
+        enum "Water Activated" {
+          value 71;
+        }
+        enum "Weston Cell" {
+          value 72;
+        }
+        enum "Zinc Air" {
+          value 73;
+        }
+        enum "Zinc Carbon" {
+          value 74;
+        }
+        enum "Zinc Chloride" {
+          value 75;
+        }
+        enum "Zinc Ion" {
+          value 76;
+        }
+        enum "Unknown" {
+          value 77;
+        }
+      }
+      mandatory true;
+      description
+        "The battery construction material (type).";
+    }
+  }
+}
+

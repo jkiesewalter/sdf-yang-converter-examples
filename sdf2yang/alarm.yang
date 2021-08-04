@@ -1,0 +1,99 @@
+module alarm {
+  yang-version 1.1;
+
+  import sdf_extension {
+    prefix helper;
+  }
+
+  description
+    "This Resource describes the Properties associated with alarm status.";
+
+  revision 2019-03-04;
+
+  container alarm {
+    helper:sdf-spec "sdfObject";
+    description
+      "This Resource describes the Properties associated with alarm status.";
+
+    leaf alarmtype {
+      helper:sdf-spec "sdfProperty";
+      type enumeration {
+        enum "General" {
+          value 0;
+        }
+        enum "Fire" {
+          value 1;
+        }
+        enum "Flood" {
+          value 2;
+        }
+        enum "Weather" {
+          value 3;
+        }
+        enum "Security" {
+          value 4;
+        }
+      }
+      description
+        "The Alarm Type.";
+    }
+
+    leaf duration {
+      helper:sdf-spec "sdfProperty";
+      type decimal64 {
+        fraction-digits 6;
+        range "0..max";
+      }
+      config true;
+      description
+        "This Property describes the alarm duration (seconds).";
+    }
+
+    leaf precision {
+      helper:sdf-spec "sdfProperty";
+      type decimal64 {
+        fraction-digits 6;
+      }
+      description
+        "When exposed the value in 'precision' provides a +/- tolerance against the Properties in the Resource. Thus if a Property is UPDATED to a value and that Property then RETRIEVED, the RETRIEVED value is valid if in the range of the set value +/- precision";
+    }
+
+    leaf-list range {
+      helper:sdf-spec "sdfProperty";
+      type decimal64 {
+        fraction-digits 6;
+      }
+      min-elements 2;
+      max-elements 2;
+      description
+        "The valid range for the Property in the Resource as a number. The first value in the array is the minimum value, the second value in the array is the maximum value.";
+    }
+
+    leaf status {
+      helper:sdf-spec "sdfRequired";
+      type boolean;
+      config true;
+      mandatory true;
+      description
+        "This Property describes the status of the alarm: true - on, false - off.";
+    }
+
+    leaf step {
+      helper:sdf-spec "sdfProperty";
+      type decimal64 {
+        fraction-digits 6;
+      }
+      description
+        "Step value across the defined range an integer when the range is a number.  This is the increment for valid values across the range; so if range is 0.0..10.0 and step is 2.5 then valid values are 0.0,2.5,5.0,7.5,10.0.";
+    }
+
+    leaf time {
+      helper:sdf-spec "sdfProperty";
+      type string;
+      config true;
+      description
+        "This Property describes the alarm time using ISO 8601 datetime format (e.g: 2007-04-05T14:30Z, 2007-04-05T14:30+09:00).";
+    }
+  }
+}
+

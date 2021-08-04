@@ -1,0 +1,347 @@
+{
+  "defaultNamespace": "sys",
+  "info": {
+    "copyright": "Copyright (c) 2014 IETF Trust and the persons identified as",
+    "license": "to the license terms contained in, the Simplified BSD License",
+    "title": "ietf-system",
+    "version": "2014-08-06"
+  },
+  "namespace": {
+    "ianach": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+    "inet": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+    "nacm": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+    "sys": "urn:ietf:params:xml:ns:yang:ietf-system",
+    "yang": "urn:ietf:params:xml:ns:yang:ietf-yang-types"
+  },
+  "sdfAction": {
+    "set-current-datetime": {
+      "description": "Set the /system-state/clock/current-datetime leaf\r\nto the specified value.\r\n\r\nIf the system is using NTP (i.e., /system/ntp/enabled\r\nis set to 'true'), then this operation will fail with\r\nerror-tag 'operation-failed' and error-app-tag value of\r\n'ntp-active'.",
+      "sdfInputData": {
+        "properties": {
+          "current-datetime": {
+            "description": "The current system date and time.\n\n",
+            "sdfRef": "yang:/sdfData/date-and-time"
+          }
+        },
+        "required": [
+          "current-datetime"
+        ],
+        "type": "object"
+      }
+    },
+    "system-restart": {
+      "description": "Request that the entire system be restarted immediately.\r\nA server SHOULD send an rpc reply to the client before\r\nrestarting the system."
+    },
+    "system-shutdown": {
+      "description": "Request that the entire system be shut down immediately.\r\nA server SHOULD send an rpc reply to the client before\r\nshutting down the system."
+    }
+  },
+  "sdfData": {
+    "authentication-method": {
+      "description": "Base identity for user authentication methods.\n!Conversion note: identity!\n"
+    },
+    "ietf-system-info": {
+      "description": "This module contains a collection of YANG definitions for the\r\nconfiguration and identification of some common system\r\nproperties within a device containing a NETCONF server.  This\r\nincludes data node definitions for system identification,\r\ntime-of-day management, user management, DNS resolver\r\nconfiguration, and some protocol operations for system\r\nmanagement.\r\n\r\nCopyright (c) 2014 IETF Trust and the persons identified as\r\nauthors of the code.  All rights reserved.\r\n\r\nRedistribution and use in source and binary forms, with or\r\nwithout modification, is permitted pursuant to, and subject\r\nto the license terms contained in, the Simplified BSD License\r\nset forth in Section 4.c of the IETF Trust's Legal Provisions\r\nRelating to IETF Documents\r\n(http://trustee.ietf.org/license-info).\r\n\r\nThis version of this YANG module is part of RFC 7317; see\r\nthe RFC itself for full legal notices.\n!Conversion note: revision 2014-08-06!\n\n!Conversion note: organization IETF NETMOD (NETCONF Data Modeling Language) Working Group!\n\n!Conversion note: contact WG Web:   <http://tools.ietf.org/wg/netmod/>\r\nWG List:  <mailto:netmod@ietf.org>\r\n\r\nWG Chair: Thomas Nadeau\r\n          <mailto:tnadeau@lucidvision.com>\r\n\r\nWG Chair: Juergen Schoenwaelder\r\n          <mailto:j.schoenwaelder@jacobs-university.de>\r\n\r\nEditor:   Andy Bierman\r\n          <mailto:andy@yumaworks.com>\r\n\r\nEditor:   Martin Bjorklund\r\n          <mailto:mbj@tail-f.com>!\n"
+    },
+    "local-users": {
+      "description": "Indicates password-based authentication of locally\r\nconfigured users.\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/authentication-method"
+    },
+    "radius": {
+      "description": "Indicates user authentication using RADIUS.\n\nReference:\nRFC 2865: Remote Authentication Dial In User Service (RADIUS)\r\nRFC 5607: Remote Authentication Dial-In User Service (RADIUS)\r\n          Authorization for Network Access Server (NAS)\r\n          Management\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/authentication-method"
+    },
+    "radius-authentication-type": {
+      "description": "Base identity for RADIUS authentication types.\n!Conversion note: identity!\n"
+    },
+    "radius-chap": {
+      "description": "The device requests Challenge Handshake Authentication\r\nProtocol (CHAP) authentication from the RADIUS server.\n\nReference:\nRFC 2865: Remote Authentication Dial In User Service (RADIUS)\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/radius-authentication-type"
+    },
+    "radius-pap": {
+      "description": "The device requests Password Authentication Protocol (PAP)\r\nauthentication from the RADIUS server.\n\nReference:\nRFC 2865: Remote Authentication Dial In User Service (RADIUS)\n!Conversion note: identity!\n",
+      "sdfRef": "#/sdfData/radius-authentication-type"
+    },
+    "timezone-name": {
+      "description": "A time zone name as used by the Time Zone Database,\r\nsometimes referred to as the 'Olson Database'.\r\n\r\nThe exact set of valid values is an implementation-specific\r\nmatter.  Client discovery of the exact set of time zone names\r\nfor a particular server is out of scope.\n!Conversion note: typedef!\n",
+      "type": "string"
+    }
+  },
+  "sdfObject": {
+    "system": {
+      "description": "System group configuration.",
+      "sdfProperty": {
+        "authentication": {
+          "description": "The authentication configuration subtree.",
+          "properties": {
+            "user": {
+              "description": "The list of local users configured on this device.\n!Conversion note: key name!\n",
+              "items": {
+                "description": "The list of local users configured on this device.",
+                "properties": {
+                  "authorized-key": {
+                    "description": "A list of public SSH keys for this user.  These keys\r\nare allowed for SSH authentication, as described in\r\nRFC 4253.\n!Conversion note: key name!\n",
+                    "items": {
+                      "description": "A list of public SSH keys for this user.  These keys\r\nare allowed for SSH authentication, as described in\r\nRFC 4253.\n!Conversion note: reference RFC 4253: The Secure Shell (SSH) Transport Layer\r\n          Protocol!\n",
+                      "properties": {
+                        "algorithm": {
+                          "description": "The public key algorithm name for this SSH key.\r\n\r\nValid values are the values in the IANA 'Secure Shell\r\n(SSH) Protocol Parameters' registry, Public Key\r\nAlgorithm Names.\n\n",
+                          "type": "string"
+                        },
+                        "key-data": {
+                          "description": "The binary public key data for this SSH key, as\r\nspecified by RFC 4253, Section 6.6, i.e.:\r\n\r\n  string    certificate or public key format\r\n            identifier\r\n  byte[n]   key/certificate data.\n!Conversion note: type binary!\n\n\n",
+                          "sdfType": "byte-string",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "An arbitrary name for the SSH key.\n\n",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "algorithm",
+                        "key-data"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "name": {
+                    "description": "The user name string identifying this entry.\n\n",
+                    "type": "string"
+                  },
+                  "password": {
+                    "description": "The password for this entry.\n\n",
+                    "sdfRef": "ianach:/sdfData/crypt-hash"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "user-authentication-order": {
+              "description": "\n\nWhen 'radius' is used as an authentication method,\r\na RADIUS server must be configured.\nmust (XPath expression): (. != \"ietf-system:radius\" or ../../radius/server)\n!Conversion note: must (. != \"ietf-system:radius\" or ../../radius/server)!\n",
+              "items": {
+                "description": "When the device authenticates a user with a password,\r\nit tries the authentication methods in this leaf-list in\r\norder.  If authentication with one method fails, the next\r\nmethod is used.  If no method succeeds, the user is\r\ndenied access.\r\n\r\nAn empty user-authentication-order leaf-list still allows\r\nauthentication of users using mechanisms that do not\r\ninvolve a password.\r\n\r\nIf the 'radius-authentication' feature is advertised by\r\nthe NETCONF server, the 'radius' identity can be added to\r\nthis list.\r\n\r\nIf the 'local-users' feature is advertised by the\r\nNETCONF server, the 'local-users' identity can be\r\nadded to this list.\n\nWhen 'radius' is used as an authentication method,\r\na RADIUS server must be configured.\nmust (XPath expression): (. != \"ietf-system:radius\" or ../../radius/server)\n!Conversion note: type identityref!\n",
+                "sdfRef": "#/sdfData/authentication-method"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "clock": {
+          "description": "Configuration of the system date and time properties.",
+          "properties": {
+            "timezone": {
+              "description": "The system time zone information.\n\n",
+              "sdfChoice": {
+                "timezone-name": {
+                  "properties": {
+                    "timezone-name": {
+                      "description": "The TZ database name to use for the system, such\r\nas 'Europe/Stockholm'.\n\n",
+                      "sdfRef": "#/sdfData/timezone-name"
+                    }
+                  },
+                  "type": "object"
+                },
+                "timezone-utc-offset": {
+                  "properties": {
+                    "timezone-utc-offset": {
+                      "const": -1500,
+                      "description": "The number of minutes to add to UTC time to\r\nidentify the time zone for this system.  For example,\r\n'UTC - 8:00 hours' would be represented as '-480'.\r\nNote that automatic daylight saving time adjustment\r\nis not provided if this object is used.\n!Conversion note: type int16!\n\n\n",
+                      "maximum": 32767,
+                      "minimum": -32768,
+                      "type": "integer",
+                      "unit": "minutes"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "type": "object"
+        },
+        "contact": {
+          "description": "The administrator contact information for the system.\r\n\r\nA server implementation MAY map this leaf to the sysContact\r\nMIB object.  Such an implementation needs to use some\r\nmechanism to handle the differences in size and characters\r\nallowed between this leaf and sysContact.  The definition of\r\nsuch a mechanism is outside the scope of this document.\n\n",
+          "type": "string"
+        },
+        "dns-resolver": {
+          "description": "Configuration of the DNS resolver.",
+          "properties": {
+            "options": {
+              "description": "Resolver options.  The set of available options has been\r\nlimited to those that are generally available across\r\ndifferent resolver implementations and generally useful.",
+              "properties": {
+                "attempts": {
+                  "default": 2,
+                  "description": "The number of times the resolver will send a query to\r\nall of its name servers before giving up and returning\r\nan error to the calling application.\n!Conversion note: type uint8!\n\n\n",
+                  "maximum": 9223372036854775807,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "timeout": {
+                  "default": 5,
+                  "description": "The amount of time the resolver will wait for a\r\nresponse from each remote name server before\r\nretrying the query via a different name server.\n!Conversion note: type uint8!\n\n\n",
+                  "maximum": 9223372036854775807,
+                  "minimum": 1,
+                  "type": "integer",
+                  "unit": "seconds"
+                }
+              },
+              "type": "object"
+            },
+            "search": {
+              "items": {
+                "description": "An ordered list of domains to search when resolving\r\na host name.",
+                "sdfRef": "inet:/sdfData/domain-name"
+              },
+              "type": "array"
+            },
+            "server": {
+              "description": "List of the DNS servers that the resolver should query.\r\n\r\nWhen the resolver is invoked by a calling application, it\r\nsends the query to the first name server in this list.  If\r\nno response has been received within 'timeout' seconds,\r\nthe resolver continues with the next server in the list.\r\nIf no response is received from any server, the resolver\r\ncontinues with the first server again.  When the resolver\r\nhas traversed the list 'attempts' times without receiving\r\nany response, it gives up and returns an error to the\r\ncalling application.\r\n\r\nImplementations MAY limit the number of entries in this\r\nlist.\n!Conversion note: key name!\n",
+              "items": {
+                "description": "List of the DNS servers that the resolver should query.\r\n\r\nWhen the resolver is invoked by a calling application, it\r\nsends the query to the first name server in this list.  If\r\nno response has been received within 'timeout' seconds,\r\nthe resolver continues with the next server in the list.\r\nIf no response is received from any server, the resolver\r\ncontinues with the first server again.  When the resolver\r\nhas traversed the list 'attempts' times without receiving\r\nany response, it gives up and returns an error to the\r\ncalling application.\r\n\r\nImplementations MAY limit the number of entries in this\r\nlist.",
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "hostname": {
+          "description": "The name of the host.  This name can be a single domain\r\nlabel or the fully qualified domain name of the host.\n\n",
+          "type": "string"
+        },
+        "location": {
+          "description": "The system location.\r\n\r\nA server implementation MAY map this leaf to the sysLocation\r\nMIB object.  Such an implementation needs to use some\r\nmechanism to handle the differences in size and characters\r\nallowed between this leaf and sysLocation.  The definition\r\nof such a mechanism is outside the scope of this document.\n\n",
+          "type": "string"
+        },
+        "ntp": {
+          "description": "Configuration of the NTP client.\n!Conversion note: presence Enables the NTP client unless the 'enabled' leaf\r\n(which defaults to 'true') is set to 'false'!\n",
+          "properties": {
+            "enabled": {
+              "default": true,
+              "description": "Indicates that the system should attempt to\r\nsynchronize the system clock with an NTP server\r\nfrom the 'ntp/server' list.\n\n",
+              "type": "boolean"
+            },
+            "server": {
+              "description": "List of NTP servers to use for system clock\r\nsynchronization.  If '/system/ntp/enabled'\r\nis 'true', then the system will attempt to\r\ncontact and utilize the specified NTP servers.\n!Conversion note: key name!\n",
+              "items": {
+                "description": "List of NTP servers to use for system clock\r\nsynchronization.  If '/system/ntp/enabled'\r\nis 'true', then the system will attempt to\r\ncontact and utilize the specified NTP servers.",
+                "properties": {
+                  "association-type": {
+                    "default": "server",
+                    "description": "The desired association type for this NTP server.\nserver: Use client association mode.  This device\r\nwill not provide synchronization to the\r\nconfigured NTP server.\npeer: Use symmetric active association mode.\r\nThis device may provide synchronization\r\nto the configured NTP server.\npool: Use client association mode with one or\r\nmore of the NTP servers found by DNS\r\nresolution of the domain name given by\r\nthe 'address' leaf.  This device will not\r\nprovide synchronization to the servers.\n\n",
+                    "type": "string"
+                  },
+                  "iburst": {
+                    "default": false,
+                    "description": "Indicates whether this server should enable burst\r\nsynchronization or not.\n\n",
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "description": "An arbitrary name for the NTP server.\n\n",
+                    "type": "string"
+                  },
+                  "prefer": {
+                    "default": false,
+                    "description": "Indicates whether this server should be preferred\r\nor not.\n\n",
+                    "type": "boolean"
+                  },
+                  "transport": {
+                    "description": "The transport-protocol-specific parameters for this\r\nserver.\n\n",
+                    "properties": {},
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "radius": {
+          "description": "Configuration of the RADIUS client.",
+          "properties": {
+            "options": {
+              "description": "RADIUS client options.",
+              "properties": {
+                "attempts": {
+                  "default": 2,
+                  "description": "The number of times the device will send a query to\r\nall of its RADIUS servers before giving up.\n!Conversion note: type uint8!\n\n\n",
+                  "maximum": 9223372036854775807,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "timeout": {
+                  "default": 5,
+                  "description": "The number of seconds the device will wait for a\r\nresponse from each RADIUS server before trying with a\r\ndifferent server.\n!Conversion note: type uint8!\n\n\n",
+                  "maximum": 9223372036854775807,
+                  "minimum": 1,
+                  "type": "integer",
+                  "unit": "seconds"
+                }
+              },
+              "type": "object"
+            },
+            "server": {
+              "description": "List of RADIUS servers used by the device.\r\n\r\nWhen the RADIUS client is invoked by a calling\r\napplication, it sends the query to the first server in\r\nthis list.  If no response has been received within\r\n'timeout' seconds, the client continues with the next\r\nserver in the list.  If no response is received from any\r\nserver, the client continues with the first server again.\r\nWhen the client has traversed the list 'attempts' times\r\nwithout receiving any response, it gives up and returns an\r\nerror to the calling application.\n!Conversion note: key name!\n",
+              "items": {
+                "description": "List of RADIUS servers used by the device.\r\n\r\nWhen the RADIUS client is invoked by a calling\r\napplication, it sends the query to the first server in\r\nthis list.  If no response has been received within\r\n'timeout' seconds, the client continues with the next\r\nserver in the list.  If no response is received from any\r\nserver, the client continues with the first server again.\r\nWhen the client has traversed the list 'attempts' times\r\nwithout receiving any response, it gives up and returns an\r\nerror to the calling application.",
+                "properties": {},
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        }
+      }
+    },
+    "system-state": {
+      "description": "System group operational state.",
+      "sdfProperty": {
+        "clock": {
+          "description": "Monitoring of the system date and time properties.",
+          "properties": {
+            "boot-datetime": {
+              "description": "The system date and time when the system last restarted.\n\n",
+              "sdfRef": "yang:/sdfData/date-and-time"
+            },
+            "current-datetime": {
+              "description": "The current system date and time.\n\n",
+              "sdfRef": "yang:/sdfData/date-and-time"
+            }
+          },
+          "type": "object"
+        },
+        "platform": {
+          "description": "Contains vendor-specific information for\r\nidentifying the system platform and operating system.\n!Conversion note: reference IEEE Std 1003.1-2008 - sys/utsname.h!\n",
+          "properties": {
+            "machine": {
+              "description": "A vendor-specific identifier string representing\r\nthe hardware in use.\n\n",
+              "type": "string"
+            },
+            "os-name": {
+              "description": "The name of the operating system in use -\r\nfor example, 'Linux'.\n\n",
+              "type": "string"
+            },
+            "os-release": {
+              "description": "The current release level of the operating\r\nsystem in use.  This string MAY indicate\r\nthe OS source code revision.\n\n",
+              "type": "string"
+            },
+            "os-version": {
+              "description": "The current version level of the operating\r\nsystem in use.  This string MAY indicate\r\nthe specific OS build date and target variant\r\ninformation.\n\n",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      }
+    }
+  }
+}
+
